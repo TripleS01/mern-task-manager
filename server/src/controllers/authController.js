@@ -20,14 +20,11 @@ export const register = async (request, response) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassowrd = await bcrypt.hash(password, salt);
 
-        const boyProfilePicture = 'https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Angel';
-        const girlProfilePicture = 'https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Zoe';
-
         const newUser = new User({
             username,
             password: hashedPassowrd,
             gender,
-            profilePicture: gender === 'male' ? boyProfilePicture : girlProfilePicture,
+            profilePicture,
         });
 
         if (newUser) {

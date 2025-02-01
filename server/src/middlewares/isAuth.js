@@ -6,7 +6,7 @@ import User from '../models/userModel.js';
 dotenv.config();
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-const isAuth = async (request, response, next) => {
+export const isAuth = async (request, response, next) => {
 
     try {
         const token = request.cookies.jwt;
@@ -34,5 +34,3 @@ const isAuth = async (request, response, next) => {
     }
 
 };
-
-export default isAuth;
