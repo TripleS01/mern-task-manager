@@ -22,7 +22,7 @@ app.use('/', router);
 
 const server = async () => {
     try {
-        await connect();
+        await connectToMongoDB();
 
         app.listen(port, () => {
             console.log(`Server is running on port ${PORT_URL}`);
