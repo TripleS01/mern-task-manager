@@ -25,10 +25,10 @@ const server = async () => {
         await connectToMongoDB();
 
         app.listen(port, () => {
-            console.log(`Server is running on port ${PORT_URL}`);
+            console.log(`Server is running on port http://localhost:${PORT_URL}`);
         });
     } catch (error) {
-        console.log("Failed to strt server.....", error.message);
+        console.log("Failed to start server ...", error.message);
         process.exit(1);
     }
 };
