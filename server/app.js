@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-import connectToMongoDB from './db/connectToMongoDB.js';
+import connectToMongoDB from './src/db/connectToMongoDB.js';
 import router from './routes.js';
 
 dotenv.config();
-const PORT_URL = process.env.PORT_URL;
+const PORT_URL = process.env.PORT_URL || 7272;
 const CLIENT_CORS_URL = process.env.REACT_CORS_URL;
 
 const app = express();
@@ -24,7 +24,7 @@ const server = async () => {
     try {
         await connectToMongoDB();
 
-        app.listen(port, () => {
+        app.listen(PORT_URL, () => {
             console.log(`Server is running on port http://localhost:${PORT_URL}`);
         });
     } catch (error) {
