@@ -1,7 +1,7 @@
-import User from "../../models/auth/UserModel.js";
+import User from "../models/userModel.js";
 
 export const getUser = async (request, response) => {
-    
+
     try {
         const user = await User.findById(request.user._id).select("-password");
 
