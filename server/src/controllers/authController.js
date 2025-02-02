@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 
 import User from "../models/userModel.js";
-import generateTokenAndSetCookie from '../utils/generateToken.js';
+import generateToken from '../utils/generateToken.js';
 
 export const registerUser = async (request, response) => {
 
@@ -72,7 +72,6 @@ export const registerUser = async (request, response) => {
 export const loginUser = async (request, response) => {
 
     try {
-        //identifier = username, email
         const { identifier, password } = request.body;
         const userExists = await User.findOne({
             $or: [
@@ -98,8 +97,8 @@ export const loginUser = async (request, response) => {
             response.cookie("token", token, {
                 path: "/",
                 httpOnly: true,
-                maxAge: 14 * 24 * 60 * 60 * 1000, 
-                sameSite: "none", 
+                maxAge: 14 * 24 * 60 * 60 * 1000,
+                sameSite: "none",
                 secure: true,
             });
 
@@ -113,7 +112,7 @@ export const loginUser = async (request, response) => {
                 isVerified,
                 token,
             });
-            
+
         } else {
             response.status(400).json({ message: "Invalid email or password!" });
         }
