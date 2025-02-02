@@ -6,7 +6,7 @@ import User from '../models/userModel.js';
 dotenv.config();
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-export const isAuth = async (request, response, next) => {
+export const authMiddleware = async (request, response, next) => {
 
     try {
         const token = request.cookies.jwt;
@@ -29,8 +29,7 @@ export const isAuth = async (request, response, next) => {
         next();
 
     } catch (error) {
-        console.log('Error in isAuth middleware: ', error.message);
+        console.log('Error in authMiddleware: ', error.message);
         response.status(500).json({ error: 'Internal server error!' });
     }
-
 };
